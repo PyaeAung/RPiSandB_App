@@ -1,0 +1,10 @@
+streamlit
+obspy
+matplotlib
+numpy
+cartopy
+folium
+streamlit-folium
+pandas
+pygmt
+pillow
