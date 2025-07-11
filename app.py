@@ -13,7 +13,7 @@ import cartopy.feature as cfeature
 from io import BytesIO
 
 # --- Streamlit App Configuration ---
-st.set_page_config(layout="wide", page_title="Raspberry Shake Seismograph Plotter")
+st.set_page_config(layout="wide", page_title="Raspberry Shake ကနေ Plot ထုတ်ရန်")
 
 # --- Helper Functions (Your original functions) ---
 cmap = plt.get_cmap('Paired', lut=12)
@@ -59,8 +59,8 @@ def grid(ax): ax.grid(color='dimgray', ls='-.', lw=0.33); ax.grid(color='dimgray
 def sax(secax, tix, tlabels): secax.set_xticks(ticks=tix); secax.set_xticklabels(tlabels, size='small', va='center_baseline'); secax.xaxis.set_minor_locator(AutoMinorLocator(10))
 
 # --- Streamlit Sidebar ---
-st.sidebar.title("Seismograph Plot Generator")
-st.sidebar.markdown("ငလျင်နှင့် R-Shake Station အချက်အလက်များကို ထည့်သွင်းပါ။")
+st.sidebar.title("ငလျင် Plot Generator AlanSheehan18 ရေးထားတာကို streamlit ထဲ ထည့်ထားတာပါ")
+st.sidebar.markdown("ငလျင် နှင့် Raspberry Shake Station အချက်အလက်များကို ထည့်သွင်းပါ။")
 event_time_str = st.sidebar.text_input("Event Time (UTC)", "2025-07-03T00:40:40", help="Format: YYYY-MM-DDTHH:MM:SS")
 latE = st.sidebar.number_input("Latitude (°N)", -90.0, 90.0, 21.6, format="%.4f")
 lonE = st.sidebar.number_input("Longitude (°E)", -180.0, 180.0, 95.5, format="%.4f")
@@ -83,16 +83,16 @@ bnst = st.sidebar.number_input("Noise Sample Start (sec before event)", 0, 10000
 bne = st.sidebar.number_input("Noise Sample End (sec after event)", 0, 10000, 600)
 bnsamp = st.sidebar.number_input("BN Sample size (s)", 1, 100, 15)
 notes1 = st.sidebar.text_area("Notes", "")
-twitter_handle = st.sidebar.text_input("Your Twitter Handle", "@AlanSheehan18")
+twitter_handle = st.sidebar.text_input("Your Twitter Handle", "@AlanSheehan18 @အောင်ပြည့်")
 
 # --- Main App ---
 st.title("Raspberry Shake - Earthquake Data Visualization")
 
-if st.sidebar.button("Generate Plot"):
+if st.sidebar.button("Plot ထုတ်ရန်"):
     try: eventTime = UTCDateTime(event_time_str)
     except Exception: st.error("Invalid Event Time format."); st.stop()
 
-    with st.spinner('Working...'):
+    with st.spinner('အလုပ်လုပ်နေပါတယ် ခဏစောင့်ပါ...'):
         try:
             # STEP 1: DATA & CORE CALCS
             rs = Client('https://data.raspberryshake.org/')
